@@ -1,0 +1,175 @@
+import pandas as pd
+import numpy as np
+
+# reads the file
+df_main = pd.read_csv("C:\\Users\\ACER\\Desktop\\germany.csv", low_memory=False)
+
+#delete duplicates
+df = df_main.drop_duplicates(subset=['vin_reg'], keep='first', inplace=False)
+
+# define n0 as the number of unique vins ("name".shape[0] function counts rows// .shape[1] counts columns)
+n0 = df.shape[0]
+
+notimp = df[(df["import"] == 0)]
+imp = df[(df["import"] != 0)]
+
+
+print('Number of not imports is', notimp.shape[0], 'and share in total is', (notimp.shape[0]/n0))
+print('Number of imports is', imp.shape[0], 'and share in total is', (imp.shape[0]/n0))
+
+can_notimp = df[(df["ort"] == "Canada") & (df["import"] == 0)]
+n1 = can_notimp.shape[0]
+den_notimp = df[(df["ort"] == "Denmark") & (df["import"] == 0)]
+n2 = den_notimp.shape[0]
+fin_notimp = df[(df["ort"] == "Finland") & (df["import"] == 0)]
+n3 = fin_notimp.shape[0]
+ger_notimp = df[(df["ort"] == "Germany") & (df["import"] == 0)]
+n4 = ger_notimp.shape[0]
+it_notimp = df[(df["ort"] == "Italy") & (df["import"] == 0)]
+n5 = it_notimp.shape[0]
+lit_notimp = df[(df["ort"] == "Lithuania") & (df["import"] == 0)]
+n6 = lit_notimp.shape[0]
+net_notimp = df[(df["ort"] == "Netherlands") & (df["import"] == 0)]
+n7 = net_notimp.shape[0]
+pol_notimp = df[(df["ort"] == "Poland") & (df["import"] == 0)]
+n8 = pol_notimp.shape[0]
+por_notimp = df[(df["ort"] == "Portugal") & (df["import"] == 0)]
+n9 = por_notimp.shape[0]
+slova_notimp = df[(df["ort"] == "Slovakia") & (df["import"] == 0)]
+n10 = slova_notimp.shape[0]
+slove_notimp = df[(df["ort"] == "Slovenia") & (df["import"] == 0)]
+n11 = slove_notimp.shape[0]
+spa_notimp = df[(df["ort"] == "Spain") & (df["import"] == 0)]
+n12 = spa_notimp.shape[0]
+swe_notimp = df[(df["ort"] == "Sweden") & (df["import"] == 0)]
+n13 = swe_notimp.shape[0]
+us_notimp = df[(df["ort"] == "United States") & (df["import"] == 0)]
+n14 = us_notimp.shape[0]
+
+bel_imp = df[(df["ort"] == "Belgium") & (df["import"] == 1)]
+n15 = bel_imp.shape[0]
+cze_imp = df[(df["ort"] == "Czech Republic") & (df["import"] == 1)]
+n16 = cze_imp.shape[0]
+den_imp = df[(df["ort"] == "Denmark") & (df["import"] == 1)]
+n17 = den_imp.shape[0]
+fin_imp = df[(df["ort"] == "Finland") & (df["import"] == 1)]
+n18 = fin_imp.shape[0]
+geo_imp = df[(df["ort"] == "Georgia") & (df["import"] == 1)]
+n19 = geo_imp.shape[0]
+ger_imp = df[(df["ort"] == "Germany") & (df["import"] == 1)]
+n20 = ger_imp.shape[0]
+ice_imp = df[(df["ort"] == "Iceland") & (df["import"] == 1)]
+n21 = ice_imp.shape[0]
+it_imp = df[(df["ort"] == "Italy") & (df["import"] == 1)]
+n22 = it_imp.shape[0]
+jap_imp = df[(df["ort"] == "Belgium") & (df["import"] == 1)]
+n23 = jap_imp.shape[0]
+lat_imp = df[(df["ort"] == "Latvia") & (df["import"] == 1)]
+n24 = lat_imp.shape[0]
+lit_imp = df[(df["ort"] == "Lithuania") & (df["import"] == 1)]
+n25 = lit_imp.shape[0]
+net_imp = df[(df["ort"] == "Netherlands") & (df["import"] == 1)]
+n26 = net_imp.shape[0]
+pol_imp = df[(df["ort"] == "Poland") & (df["import"] == 1)]
+n27 = pol_imp.shape[0]
+slova_imp = df[(df["ort"] == "Slovakia") & (df["import"] == 1)]
+n28 = slova_imp.shape[0]
+slove_imp = df[(df["ort"] == "Slovenia") & (df["import"] == 1)]
+n29 = slove_imp.shape[0]
+sk_imp = df[(df["ort"] == "South Korea") & (df["import"] == 1)]
+n30 = sk_imp.shape[0]
+spa_imp = df[(df["ort"] == "Spain") & (df["import"] == 1)]
+n31 = spa_imp.shape[0]
+swe_imp = df[(df["ort"] == "Sweden") & (df["import"] == 1)]
+n32 = swe_imp.shape[0]
+uae_imp = df[(df["ort"] == "United Arab Emirates") & (df["import"] == 1)]
+n33 = uae_imp.shape[0]
+uk_imp = df[(df["ort"] == "United Kingdom") & (df["import"] == 1)]
+n34 = uk_imp.shape[0]
+
+#set sample size
+N = 10
+
+#set the criteria use + count rows - "print(n1)" when you want to see how many VINS are ın each category
+
+# based on population how many from each category should sample have / int() turns float variable into integer + round() rounds
+r1 = int(round((n1/n0), 1) * N)
+r2 = int(round((n2/n0), 1) * N)
+r3 = int(round((n3/n0), 1) * N)
+r4 = int(round((n4/n0), 1) * N)
+r5 = int(round((n5/n0), 1) * N)
+r6 = int(round((n6/n0), 1) * N)
+r7 = int(round((n7/n0), 1) * N)
+r8 = int(round((n8/n0), 1) * N)
+r9 = int(round((n9/n0), 1) * N)
+r10 = int(round((n10/n0), 1) * N)
+r11 = int(round((n11/n0), 1) * N)
+r12 = int(round((n12/n0), 1) * N)
+r13 = int(round((n13/n0), 1) * N)
+r14 = int(round((n14/n0), 1) * N)
+r15 = int(round((n15/n0), 1) * N)
+r16 = int(round((n16/n0), 1) * N)
+r17 = int(round((n17/n0), 1) * N)
+r18 = int(round((n18/n0), 1) * N)
+r19 = int(round((n19/n0), 1) * N)
+r20 = int(round((n20/n0), 1) * N)
+r21 = int(round((n21/n0), 1) * N)
+r22 = int(round((n22/n0), 1) * N)
+r23 = int(round((n23/n0), 1) * N)
+r24 = int(round((n24/n0), 1) * N)
+r25 = int(round((n25/n0), 1) * N)
+r26 = int(round((n26/n0), 1) * N)
+r27 = int(round((n27/n0), 1) * N)
+r28 = int(round((n28/n0), 1) * N)
+r29 = int(round((n29/n0), 1) * N)
+r30 = int(round((n30/n0), 1) * N)
+r31 = int(round((n31/n0), 1) * N)
+r32 = int(round((n32/n0), 1) * N)
+r33 = int(round((n33/n0), 1) * N)
+r34 = int(round((n34/n0), 1) * N)
+
+print(r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14, r15, r16, r17, r18, r19, r20, r21, r22, r23, r24, r25, r26, r27, r28, r29, r30, r31, r32, r33, r34)
+
+import random
+
+# pick samples from each category based on stratas
+ra_can_notimp = can_notimp.sample(r1)
+ra_den_notimp = den_notimp.sample(r2)
+ra_fin_notimp = fin_notimp.sample(r3)
+ra_ger_notimp = ger_notimp.sample(r4)
+ra_it_notimp = it_notimp.sample(r5)
+ra_lit_notimp = lit_notimp.sample(r6)
+ra_net_notimp = net_notimp.sample(r7)
+ra_pol_notimp = pol_notimp.sample(r8)
+ra_por_notimp = por_notimp.sample(r9)
+ra_slova_notimp = slova_notimp.sample(r10)
+ra_slove_notimp = slove_notimp.sample(r11)
+ra_spa_notimp = spa_notimp.sample(r12)
+ra_swe_notimp = swe_notimp.sample(r13)
+ra_us_notimp = us_notimp.sample(r14)
+ra_bel_imp = bel_imp.sample(r15)
+ra_cze_imp = cze_imp.sample(r16)
+ra_den_imp = den_imp.sample(r17)
+ra_fin_imp = fin_imp.sample(r18)
+ra_geo_imp = geo_imp.sample(r19)
+ra_ger_imp = ger_imp.sample(r20)
+ra_ice_imp = ice_imp.sample(r21)
+ra_it_imp = it_imp.sample(r22)
+ra_jap_imp = jap_imp.sample(r23)
+ra_lat_imp = lat_imp.sample(r24)
+ra_lit_imp = lit_imp.sample(r25)
+ra_net_imp = net_imp.sample(r26)
+ra_pol_imp = pol_imp.sample(r27)
+ra_slova_imp = slova_imp.sample(r28)
+ra_slove_imp = slove_imp.sample(r29)
+ra_sk_imp = sk_imp.sample(r30)
+ra_spa_imp = spa_imp.sample(r31)
+ra_swe_imp = swe_imp.sample(r32)
+ra_uae_imp = uae_imp.sample(r33)
+ra_uk_imp = uk_imp.sample(r34)
+
+
+final = pd.DataFrame()
+final = final.append([ra_can_notimp, ra_den_notimp, ra_fin_notimp, ra_ger_notimp, ra_it_notimp, ra_lit_notimp, ra_net_notimp, ra_pol_notimp, ra_por_notimp, ra_slova_notimp, ra_slove_notimp,ra_spa_notimp, ra_swe_notimp, ra_us_notimp, ra_bel_imp, ra_cze_imp, ra_den_imp, ra_fin_imp, ra_geo_imp, ra_ger_imp, ra_ice_imp, ra_it_imp, ra_jap_imp, ra_lat_imp,ra_lit_imp, ra_net_imp,
+ra_pol_imp, ra_slova_imp, ra_slove_imp, ra_sk_imp, ra_spa_imp, ra_swe_imp, ra_uae_imp, ra_uk_imp])
+final.to_csv(r'C:\Users\ACER\Desktop\export_dataframe.csv', index=False, header=True)
